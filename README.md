@@ -49,22 +49,9 @@ npx serve .
 - 모듈은 필요한 콜백만 인자로 받아, 캔버스 전역 상태에 직접 의존하지 않습니다. 로컬 파일 실행을 지원하기 위해 `index.html`에서 순서대로 불러옵니다.
 - 새 기능은 가능한 한 `modules/기능명.js`로 추가한 뒤 `app.js`에서 초기화합니다.
 
-## GitHub 업로드
-
-```bash
-git init
-git add .
-git commit -m "feat: initialize Maker Studio"
-git branch -M main
-git remote add origin https://github.com/USER/REPOSITORY.git
-git push -u origin main
-```
-
-`USER/REPOSITORY`를 실제 GitHub 저장소 주소로 바꿔 주세요. GitHub Pages를 사용하면 정적 사이트로 바로 배포할 수 있습니다.
-
 ## 브라우저 지원
 
-최근 버전의 Chrome·Edge를 기준으로 만들었습니다. 이미지 내보내기와 클립보드 기능은 브라우저 권한 및 로컬 파일 실행 정책의 영향을 받을 수 있습니다.
+최근 버전의 Chrome·Edge를 기준으로 만들었습니다. 이미지 내보내기와 클립보드 기능은 브라우저 권한의 영향을 받을 수 있습니다.
 
 ## 라이선스
 

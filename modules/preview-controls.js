@@ -16,21 +16,27 @@ function bindPreviewControls({ getZoom, setZoom, refreshPreview }) {
   const resizer = document.querySelector('#preview-resizer');
   resizer.addEventListener('pointerdown', event => {
     event.preventDefault();
+    resizer.setPointerCapture?.(event.pointerId);
     const panel = document.querySelector('.layers-panel');
     const startY = event.clientY;
     const startHeight = parseFloat(getComputedStyle(panel).getPropertyValue('--preview-height')) || 170;
+    const minHeight = 120;
+    const maxHeight = Math.max(minHeight, panel.getBoundingClientRect().height * .6);
     setZoom(1);
     const move = moveEvent => {
-      panel.style.setProperty('--preview-height', `${Math.max(90, Math.min(440, startHeight + moveEvent.clientY - startY))}px`);
+      panel.style.setProperty('--preview-height', `${Math.max(minHeight, Math.min(maxHeight, startHeight + moveEvent.clientY - startY))}px`);
       refreshPreview();
     };
     const end = () => {
+      resizer.releasePointerCapture?.(event.pointerId);
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerup', end);
+      window.removeEventListener('pointercancel', end);
       refreshPreview();
     };
     window.addEventListener('pointermove', move);
     window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', end);
   });
 }
 

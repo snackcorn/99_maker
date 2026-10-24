@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maker Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-dot"></span> MAKER STUDIO <small>v0.2.0 · 새 캔버스</small></div>
+    <div class="canvas-actions"><button id="clear-canvas" class="ghost-btn">전체 비우기</button><button id="load-json" class="ghost-btn">작업 불러오기</button><button id="share-project" class="ghost-btn">공유</button><div class="export-menu"><button id="export-toggle" class="primary-btn">내보내기 ▾</button><div id="export-options" class="export-options" hidden><button data-export="jpg">JPG</button><button data-export="png">PNG</button><button data-export="clipboard">클립보드</button><button data-export="svg">Photoshop용 SVG</button><button id="download-json">작업 파일 JSON</button></div></div></div>
+  </header>
+  <main class="studio">
+    <aside class="tool-panel" aria-label="요소 추가 도구">
+      <nav class="tool-tabs" aria-label="도구 분류">
+        <button class="tool-tab active" data-tab="content"><span>요소</span></button>
+        <button class="tool-tab" data-tab="decor"><span>배경·꾸미기</span></button>
+      </nav>
+      <section class="tool-content active" data-content="content">
+        <div class="preset-tools"><b>기본 프리셋</b><button data-preset="game">게임 성향표</button><button data-preset="character">캐릭터 소개</button><button data-preset="checklist">체크리스트</button></div>
+        <p class="panel-guide">클릭하면 캔버스에 새 요소가 추가됩니다.</p>
+        <button class="add-tool" data-add="title"><b>제목 + 내용</b><span>긴 글 입력</span></button>
+        <button class="add-tool" data-add="select"><b>드롭 선택</b><span>선택지 한 개</span></button>
+        <button class="add-tool" data-add="choice"><b>체크 선택</b><span>칩 형태 옵션 선택</span></button>
+        <button class="add-tool" data-add="check"><b>체크리스트</b><span>여러 항목 체크</span></button>
+        <button class="add-tool" data-add="list"><b>목록형</b><span>번호 목록</span></button>
+        <button class="add-tool" data-add="text"><b>내용만</b><span>자유 텍스트</span></button>
+      </section>
+      <section class="tool-content" data-content="decor">
+        <p class="panel-guide">배경은 한 개만 추가할 수 있으며 미리보기·저장 영역의 기준이 됩니다.</p>
+        <button id="add-background" class="add-tool"><b>배경 추가</b><span>작업 영역 기준</span></button>
+        <button id="add-sticker" class="add-tool"><b>스티커(사진) 추가</b><span>이미지를 움직이고 크기를 조절</span></button>
+        <button class="shape-tool" data-shape="rect"><span class="shape-preview rectangle"></span>네모</button>
+        <button class="shape-tool" data-shape="circle"><span class="shape-preview circle"></span>동그라미</button>
+        <button class="shape-tool" data-shape="polygon"><span class="shape-preview triangle"></span>세모 / 다각형</button>
+        <label class="color-control">배경색 <input id="canvas-color" type="color" value="#f8fafc" /></label>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <section id="inspector" class="inspector empty" aria-label="선택 요소 편집">
+        <div class="inspector-title"><b>선택 요소 편집</b><small id="selected-name">캔버스에서 요소를 선택하세요</small></div>
+        <div class="inspect-controls">
+          <label>크기 <input id="item-width" type="number" min="40" disabled> × <input id="item-height" type="number" min="40" disabled></label>
+          <label>회전 <input id="item-rotation" type="range" min="-180" max="180" value="0" disabled><output id="rotation-output">0°</output></label>
+          <label>투명도 <input id="item-opacity" type="range" min="0" max="100" value="100" disabled><output id="opacity-output">100%</output></label>
+          <label>모서리 <input id="item-radius" type="range" min="0" max="50" value="8" disabled><output id="radius-output">8px</output></label>
+          <div class="color-swatches" aria-label="색상"><button data-color="#ffffff" disabled></button><button data-color="#fca5a5" disabled></button><button data-color="#fcd34d" disabled></button><button data-color="#86efac" disabled></button><button data-color="#93c5fd" disabled></button><button data-color="#c4b5fd" disabled></button><label class="color-custom" title="자유 색상 선택"><input id="item-color" type="color" value="#ffffff" disabled></label></div>
+          <div id="shape-border-controls" class="shape-border-controls" hidden><span>테두리</span><div class="border-swatches"><button data-border-color="#ffffff" disabled></button><button data-border-color="#fca5a5" disabled></button><button data-border-color="#fcd34d" disabled></button><button data-border-color="#86efac" disabled></button><button data-border-color="#93c5fd" disabled></button><button data-border-color="#c4b5fd" disabled></button><label class="color-custom" title="테두리 자유 색상 선택"><input id="border-color" type="color" value="#e55338" disabled></label></div><label class="sync-border"><input id="sync-border" type="checkbox" disabled> 배경색과 통일</label></div>
+          <div id="content-decoration-controls" class="content-decoration-controls" hidden><label><input id="content-border" type="checkbox" disabled> 테두리</label><label><input id="content-shadow" type="checkbox" disabled checked> 그림자</label></div>
+          <div id="background-image-controls" class="background-image-controls" hidden><button id="background-image" type="button" class="inspect-btn">그림</button><small>배경 사진 선택</small></div>
+          <button id="edit-polygon" class="inspect-btn" disabled hidden>다각형 편집</button>
+          <button id="reset-size" class="inspect-btn" disabled>원래 크기</button><button id="reset-rotation" class="inspect-btn" disabled>회전 초기화</button><button id="layer-up" class="inspect-btn" disabled>레이어 ↑</button><button id="layer-down" class="inspect-btn" disabled>레이어 ↓</button><button id="delete-selected" class="danger-btn" disabled>지우기</button>
+        </div>
+        <div id="content-editor" class="content-editor" hidden></div>
+        <div id="text-format-controls" class="text-format-controls" hidden><b>선택 글자</b><label>크기 <input id="text-font-size" type="number" min="9" max="72" value="14"></label><button data-text-cmd="bold"><b>B</b></button><button data-text-cmd="italic"><i>I</i></button><button data-text-cmd="strikeThrough"><s>S</s></button><label>색 <input id="text-color" type="color" value="#27364d"></label></div>
+      </section>
+      <div class="workspace-ruler">캔버스 편집 영역 <em>요소를 드래그하여 이동 · 모서리를 드래그하여 크기 조절</em></div>
+      <div id="canvas" class="canvas" aria-label="편집 캔버스"></div>
+    </section>
+
+    <aside class="layers-panel" aria-label="레이어">
+      <div class="preview-wrap"><div class="preview-heading"><span>완성 미리보기</span><div class="preview-zoom" aria-label="미리보기 확대 축소"><button id="preview-zoom-out" type="button" title="축소">−</button><button id="preview-fit" type="button" title="화면에 맞춤">맞춤</button><button id="preview-zoom-in" type="button" title="확대">＋</button><output id="preview-zoom-output">100%</output></div></div><div id="preview" class="preview"><div id="preview-stage"></div></div></div>
+      <div id="preview-resizer" class="preview-resizer" title="드래그하여 미리보기 높이 조절"><span></span></div>
+      <div class="layers-heading"><div><h1>레이어</h1></div><button id="clear-layers" class="icon-btn" title="모든 레이어 삭제">전체 지우기</button></div>
+      <p class="layer-note">위에 있을수록 캔버스에서 앞에 표시됩니다.</p>
+      <ol id="layers" class="layers"></ol>
+      <div class="layer-footer">드래그하여 순서 변경</div>
+    </aside>
+  </main>
+  <template id="resize-handle"><span class="resize-handle" title="크기 조절"></span></template>
+  <input id="image-picker" type="file" accept="image/*" hidden />
+  <input id="json-picker" type="file" accept="application/json,.json" hidden />
+  <dialog id="share-dialog" class="share-dialog">
+    <form method="dialog">
+      <b>공유 링크 만들기</b>
+      <p>링크를 연 사람에게 현재 편집 상태가 그대로 표시됩니다.</p>
+      <label><input id="share-include-inputs" type="checkbox" checked> 입력칸의 내용과 선택 상태 포함</label>
+      <div><button value="cancel" class="inspect-btn">취소</button><button id="copy-share-link" value="default" class="primary-btn">링크 복사</button></div>
+    </form>
+  </dialog>
+  <dialog id="polygon-dialog" class="polygon-dialog">
+    <div class="polygon-modal-head"><div><b>다각형 편집</b><small>점을 클릭해 선택하거나 드래그해 이동하세요. 점 추가는 가장 긴 변의 중간에 생성됩니다.</small></div><button id="close-polygon" class="icon-btn">×</button></div>
+    <div id="polygon-editor" class="polygon-editor"></div>
+    <div class="polygon-modal-actions"><button id="polygon-add" class="inspect-btn">점 추가</button><button id="polygon-remove" class="inspect-btn">점 제거</button><button id="polygon-undo" class="inspect-btn">되돌리기</button><button id="polygon-redo" class="inspect-btn">되돌리기 취소</button><button id="polygon-regular" class="inspect-btn">균일하게</button><span></span><button id="polygon-apply" class="primary-btn">편집 완료</button></div>
+  </dialog>
+  <script src="modules/definitions.js"></script>
+  <script src="modules/format.js"></script>
+  <script src="modules/image-picker.js"></script>
+  <script src="modules/preview-controls.js"></script>
+  <script src="modules/export-tools.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

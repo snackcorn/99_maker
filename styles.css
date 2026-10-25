@@ -38,3 +38,4 @@ button { cursor: pointer; }
 .polygon-editor circle { touch-action:none; user-select:none; -webkit-user-select:none; }
 .list-row input { width:100%; min-width:0; flex:1 1 auto; }
 .preview { cursor:grab; touch-action:none; }.preview:active { cursor:grabbing; }
+.inspect-controls input[type=number] { touch-action:none; cursor:ew-resize; }

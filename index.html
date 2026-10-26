@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maker Studio</title>
-  <link rel="stylesheet" href="styles.css?v=0.2.25" />
+  <link rel="stylesheet" href="styles.css?v=0.2.30" />
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><span class="brand-dot"></span> MAKER STUDIO <small>v0.2.25 · 새 캔버스</small></div>
-    <div class="canvas-actions"><button id="history-undo" class="ghost-btn" type="button" title="작업 취소" disabled>취소</button><button id="history-redo" class="ghost-btn" type="button" title="다시 실행" disabled>되돌리기</button><button id="clear-canvas" class="ghost-btn">전체 비우기</button><button id="load-json" class="ghost-btn">링크 불러오기</button><button id="share-project" class="ghost-btn">공유</button><div class="export-menu"><button id="export-toggle" class="primary-btn">내보내기 ▾</button><div id="export-options" class="export-options" hidden><button data-export="jpg">JPG</button><button data-export="png">PNG</button><button data-export="clipboard">클립보드</button><button data-export="svg">Photoshop용 SVG</button><button id="download-json">작업 파일 JSON</button></div></div></div>
+    <div class="brand"><span class="brand-dot"></span> MAKER STUDIO <small>v0.2.30 · 새 캔버스</small></div>
+    <div class="canvas-actions"><button id="history-undo" class="ghost-btn" type="button" title="작업 취소" disabled>취소</button><button id="history-redo" class="ghost-btn" type="button" title="다시 실행" disabled>되돌리기</button><button id="clear-canvas" class="ghost-btn">전체 비우기</button><button id="save-editor-screen" class="ghost-btn" type="button">편집 상태 저장</button><button id="load-json" class="ghost-btn">링크 불러오기</button><button id="share-project" class="ghost-btn">공유</button><div class="export-menu"><button id="export-toggle" class="primary-btn">내보내기 ▾</button><div id="export-options" class="export-options" hidden><button data-export="jpg">JPG</button><button data-export="png">PNG</button><button data-export="clipboard">클립보드</button><button data-export="svg">Photoshop용 SVG</button><button id="download-json">작업 파일 JSON</button></div></div></div>
   </header>
   <main class="studio">
     <aside class="tool-panel" aria-label="요소 추가 도구">
@@ -104,11 +104,11 @@
     <div id="checklist-editor-rows" class="checklist-editor-rows"></div>
     <div class="checklist-editor-actions"><button id="checklist-add-row" class="inspect-btn" type="button">＋ 항목 추가</button><span></span><button id="checklist-apply" class="primary-btn" type="button">적용</button></div>
   </dialog>
-  <script defer src="./modules/definitions.js?v=0.2.25"></script>
-  <script defer src="./modules/format.js?v=0.2.25"></script>
-  <script defer src="./modules/image-picker.js?v=0.2.25"></script>
-  <script defer src="./modules/preview-controls.js?v=0.2.25"></script>
-  <script defer src="./modules/export-tools.js?v=0.2.25"></script>
-  <script defer src="./app.js?v=0.2.25"></script>
+  <script defer src="./modules/definitions.js?v=0.2.30"></script>
+  <script defer src="./modules/format.js?v=0.2.30"></script>
+  <script defer src="./modules/image-picker.js?v=0.2.30"></script>
+  <script defer src="./modules/preview-controls.js?v=0.2.30"></script>
+  <script defer src="./modules/export-tools.js?v=0.2.30"></script>
+  <script defer src="./app.js?v=0.2.30"></script>
 </body>
 </html>

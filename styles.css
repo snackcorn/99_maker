@@ -1,5 +1,6 @@
 :root { font-family: Inter, "Pretendard", "Noto Sans KR", system-ui, sans-serif; color: #162033; background: #e8edf5; }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; min-width: 960px; min-height: 100vh; }
 .startup-error { position:fixed; z-index:20000; inset:12px 12px auto; padding:11px 14px; border-radius:8px; background:#b42318; color:#fff; font-size:13px; font-weight:700; box-shadow:0 5px 18px #7f1d1d66; }
 button, input, textarea, select { font: inherit; }

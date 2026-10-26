@@ -47,6 +47,7 @@ button { cursor: pointer; }
 .check-horizontal .choice-list { display:flex; flex-wrap:wrap; align-items:center; column-gap:14px; row-gap:8px; }.check-horizontal .choice-list label { flex:0 1 auto; }.list-row b { min-width:24px; text-align:right; white-space:nowrap; }
 .sticker-dialog { width:min(620px,92vw); border:0; border-radius:12px; padding:0; box-shadow:0 18px 50px #11182766; }.sticker-dialog::backdrop { background:#17203388; }.sticker-editor-stage { height:360px; margin:14px; overflow:hidden; position:relative; display:grid; place-items:center; background:#f1f5f9 repeating-conic-gradient(#dbe4ee 0 25%,#f7fafc 0 50%) 50% / 20px 20px; border:1px solid #d4deea; }.sticker-editor-stage img { width:100%; height:100%; object-fit:cover; transform-origin:center; touch-action:none; user-select:none; cursor:grab; }.sticker-editor-stage img:active { cursor:grabbing; }.sticker-editor-actions { display:flex; align-items:center; gap:7px; padding:0 14px 14px; }.sticker-editor-actions span { flex:1; }
 .checklist-item-editor { display:grid; gap:5px; width:100%; padding-top:6px; border-top:1px dashed #dce4ef; }.checklist-item-editor > b { color:#64748b; font-size:11px; }.checklist-item-row { display:flex; align-items:center; gap:5px; }.checklist-item-row input { min-width:0!important; flex:1; }.checklist-item-row button { width:28px; min-width:28px; height:28px; padding:0; }.checklist-item-actions { display:flex; gap:5px; }
+.checklist-dialog { width:min(540px,92vw); border:0; border-radius:12px; padding:0; box-shadow:0 18px 50px #11182766; }.checklist-dialog::backdrop { background:#17203388; }.checklist-editor-rows { display:grid; gap:7px; max-height:48vh; overflow:auto; padding:14px; }.checklist-editor-row { display:flex; align-items:center; gap:7px; }.checklist-editor-row input { flex:1; min-width:0; padding:8px; border:1px solid #d4deea; border-radius:5px; }.checklist-editor-row button { width:30px; height:32px; padding:0; }.checklist-editor-actions { display:flex; align-items:center; gap:7px; padding:0 14px 14px; }.checklist-editor-actions span { flex:1; }
 
 /* Mobile: panels become a vertical editor flow while preserving the full canvas. */
 @media (max-width: 760px) {
@@ -114,6 +115,7 @@ button { cursor: pointer; }
   .sticker-editor-actions { flex-wrap:wrap; padding:0 10px 10px; }
   .sticker-editor-actions span { display:none; }
   .sticker-editor-actions .primary-btn { flex:1 1 100%; }
+  .checklist-dialog { width:calc(100vw - 20px); max-width:none; }
 }
 
 @media (max-width: 380px) {

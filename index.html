@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maker Studio</title>
-  <link rel="stylesheet" href="styles.css?v=0.2.16" />
+  <link rel="stylesheet" href="styles.css?v=0.2.18" />
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><span class="brand-dot"></span> MAKER STUDIO <small>v0.2.16 · 새 캔버스</small></div>
+    <div class="brand"><span class="brand-dot"></span> MAKER STUDIO <small>v0.2.18 · 새 캔버스</small></div>
     <div class="canvas-actions"><button id="clear-canvas" class="ghost-btn">전체 비우기</button><button id="load-json" class="ghost-btn">링크 불러오기</button><button id="share-project" class="ghost-btn">공유</button><div class="export-menu"><button id="export-toggle" class="primary-btn">내보내기 ▾</button><div id="export-options" class="export-options" hidden><button data-export="jpg">JPG</button><button data-export="png">PNG</button><button data-export="clipboard">클립보드</button><button data-export="svg">Photoshop용 SVG</button><button id="download-json">작업 파일 JSON</button></div></div></div>
   </header>
   <main class="studio">
@@ -50,6 +50,7 @@
           <div id="shape-border-controls" class="shape-border-controls" hidden><span>테두리</span><div class="border-swatches"><button data-border-color="#ffffff" disabled></button><button data-border-color="#fca5a5" disabled></button><button data-border-color="#fcd34d" disabled></button><button data-border-color="#86efac" disabled></button><button data-border-color="#93c5fd" disabled></button><button data-border-color="#c4b5fd" disabled></button><label class="color-custom" title="테두리 자유 색상 선택"><input id="border-color" type="color" value="#e55338" disabled></label></div><label class="sync-border"><input id="sync-border" type="checkbox" disabled> 배경색과 통일</label></div>
           <div id="content-decoration-controls" class="content-decoration-controls" hidden><label><input id="content-border" type="checkbox" disabled> 테두리</label><label><input id="content-shadow" type="checkbox" disabled checked> 그림자</label></div>
           <div id="background-image-controls" class="background-image-controls" hidden><button id="background-image" type="button" class="inspect-btn">그림</button><small>배경 사진 선택</small></div>
+          <div id="sticker-controls" class="background-image-controls" hidden><button id="edit-sticker-area" type="button" class="inspect-btn">사용 영역 편집</button><small>사진 표시 영역</small></div>
           <button id="edit-polygon" class="inspect-btn" disabled hidden>다각형 편집</button>
           <button id="reset-size" class="inspect-btn" disabled>원래 크기</button><button id="reset-rotation" class="inspect-btn" disabled>회전 초기화</button><button id="layer-up" class="inspect-btn" disabled>레이어 ↑</button><button id="layer-down" class="inspect-btn" disabled>레이어 ↓</button><button id="delete-selected" class="danger-btn" disabled>지우기</button>
         </div>
@@ -93,11 +94,16 @@
     <div id="polygon-editor" class="polygon-editor"></div>
     <div class="polygon-modal-actions"><button id="polygon-add" class="inspect-btn">점 추가</button><button id="polygon-remove" class="inspect-btn">점 제거</button><button id="polygon-undo" class="inspect-btn">되돌리기</button><button id="polygon-redo" class="inspect-btn">되돌리기 취소</button><button id="polygon-regular" class="inspect-btn">균일하게</button><span></span><button id="polygon-apply" class="primary-btn">편집 완료</button></div>
   </dialog>
-  <script defer src="./modules/definitions.js?v=0.2.16"></script>
-  <script defer src="./modules/format.js?v=0.2.16"></script>
-  <script defer src="./modules/image-picker.js?v=0.2.16"></script>
-  <script defer src="./modules/preview-controls.js?v=0.2.16"></script>
-  <script defer src="./modules/export-tools.js?v=0.2.16"></script>
-  <script defer src="./app.js?v=0.2.16"></script>
+  <dialog id="sticker-dialog" class="sticker-dialog">
+    <div class="polygon-modal-head"><div><b>스티커 사용 영역 편집</b><small>사진을 드래그하여 위치를 바꾸고 확대·축소할 수 있습니다.</small></div><button id="close-sticker-editor" class="icon-btn" type="button">×</button></div>
+    <div id="sticker-editor-stage" class="sticker-editor-stage"></div>
+    <div class="sticker-editor-actions"><button id="sticker-zoom-out" class="inspect-btn" type="button">− 축소</button><button id="sticker-zoom-in" class="inspect-btn" type="button">＋ 확대</button><button id="sticker-reset-area" class="inspect-btn" type="button">원래 영역</button><span></span><button id="sticker-apply-area" class="primary-btn" type="button">적용</button></div>
+  </dialog>
+  <script defer src="./modules/definitions.js?v=0.2.18"></script>
+  <script defer src="./modules/format.js?v=0.2.18"></script>
+  <script defer src="./modules/image-picker.js?v=0.2.18"></script>
+  <script defer src="./modules/preview-controls.js?v=0.2.18"></script>
+  <script defer src="./modules/export-tools.js?v=0.2.18"></script>
+  <script defer src="./app.js?v=0.2.18"></script>
 </body>
 </html>

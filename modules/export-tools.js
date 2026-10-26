@@ -51,12 +51,13 @@ function bindExportMenu({ canvas, getOutputFrame }) {
     context.scale(2, 2);
     context.drawImage(image, 0, 0);
     URL.revokeObjectURL(url);
-    return new Promise(resolve => output.toBlob(resolve, type === 'jpg' ? 'image/jpeg' : 'image/png', .95));
+    return new Promise((resolve, reject) => output.toBlob(blob => blob ? resolve(blob) : reject(new Error('image encoding failed')), type === 'jpg' ? 'image/jpeg' : 'image/png', .95));
   };
 
   document.querySelectorAll('[data-export]').forEach(button => button.addEventListener('click', async () => {
     options.hidden = true;
     const type = button.dataset.export;
+    button.disabled = true;
     try {
       if (type === 'svg') {
         saveBlob(new Blob([makeSvg()], { type: 'image/svg+xml' }), 'maker-studio-photoshop.svg');
@@ -70,8 +71,16 @@ function bindExportMenu({ canvas, getOutputFrame }) {
       } else {
         saveBlob(blob, `maker-studio.${type}`);
       }
-    } catch {
-      alert(type === 'clipboard' ? '클립보드 복사가 허용되지 않았습니다. PNG로 저장해 주세요.' : '이미지를 만드는 중 오류가 발생했습니다.');
+    } catch (error) {
+      console.error('[Maker Studio] 내보내기 실패:', error);
+      if (type !== 'clipboard') {
+        saveBlob(new Blob([makeSvg()], { type: 'image/svg+xml' }), 'maker-studio-fallback.svg');
+        alert('PNG/JPG 변환에 실패해 SVG 파일로 저장했습니다.');
+      } else {
+        alert('클립보드 복사가 허용되지 않았습니다. PNG로 저장해 주세요.');
+      }
+    } finally {
+      button.disabled = false;
     }
   }));
 }

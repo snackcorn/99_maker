@@ -39,3 +39,76 @@ button { cursor: pointer; }
 .list-row input { width:100%; min-width:0; flex:1 1 auto; }
 .preview { cursor:grab; touch-action:none; }.preview:active { cursor:grabbing; }
 .inspect-controls input[type=number] { touch-action:none; cursor:ew-resize; }
+.canvas-item .resize-handle { display:none; }
+.chip-add { display:none; }
+
+/* Mobile: panels become a vertical editor flow while preserving the full canvas. */
+@media (max-width: 760px) {
+  body { min-width: 0; min-height: 100dvh; overflow-x: hidden; }
+  button, input, select, textarea { font-size: 16px; }
+  .topbar { height: auto; min-height: 58px; padding: 10px 12px; align-items: flex-start; gap: 9px; flex-wrap: wrap; }
+  .brand { flex: 1 1 100%; font-size: 13px; }
+  .brand small { margin-left: auto; font-size: 11px; }
+  .canvas-actions { display: flex; width: 100%; gap: 6px; }
+  .ghost-btn, .primary-btn { flex: 1; min-height: 38px; margin: 0; padding: 8px 6px; font-size: 12px; white-space: nowrap; }
+  .export-menu { flex: 1; display: grid; }
+  .export-menu .primary-btn { width: 100%; }
+  .export-options { width: 100%; right: 0; }
+
+  .studio { height: auto; min-height: calc(100dvh - 112px); display: flex; flex-direction: column; gap: 10px; padding: 10px; }
+  .tool-panel, .layers-panel { width: 100%; overflow: visible; }
+  .tool-panel { order: 1; }
+  .workspace { order: 2; min-height: 620px; }
+  .layers-panel { order: 3; min-height: 460px; }
+  .tool-tabs { position: sticky; top: 0; z-index: 20; border-radius: 12px 12px 0 0; }
+  .tool-tab { min-height: 48px; padding: 10px; }
+  .tool-content { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 10px; }
+  .tool-content .preset-tools, .tool-content .panel-guide { grid-column: 1 / -1; }
+  .preset-tools { grid-template-columns: repeat(3, 1fr); }
+  .preset-tools button { min-height: 35px; font-size: 11px; }
+  .add-tool, .shape-tool { min-height: 58px; padding: 9px; }
+  .color-control { grid-column: 1 / -1; margin: 0; }
+
+  .inspector { position: sticky; top: 0; z-index: 15; padding: 9px; margin-bottom: 4px; }
+  .inspector-title { margin-bottom: 6px; }
+  .inspect-controls { gap: 6px; }
+  .inspect-controls label { min-height: 34px; font-size: 11px; }
+  .inspect-controls input[type=number] { width: 52px; min-height: 30px; }
+  .inspect-controls input[type=range] { width: 74px; }
+  .inspect-btn, .danger-btn { min-height: 32px; padding: 6px 8px; }
+  .shape-border-controls, .content-decoration-controls, .background-image-controls { padding-left: 0; border-left: 0; }
+  .content-editor { align-items: stretch; flex-wrap: wrap; gap: 6px; }
+  .content-editor label { width: 100%; }
+  .content-editor input { min-width: 0; min-height: 34px; }
+  .workspace-ruler { min-height: 29px; height: auto; padding: 3px 0; }
+  .workspace-ruler em { display: none; }
+  .canvas { flex: 0 0 520px; min-height: 520px; }
+  .canvas-item.selected::after { display: none; }
+  .selection-label { font-size: 12px; padding: 5px 9px; }
+  .selection-frame-handle { width: 22px; height: 22px; right: -11px; bottom: -11px; }
+
+  .preview-wrap { padding: 10px; }
+  .preview { height: min(46vw, 260px); min-height: 155px; }
+  .preview-resizer { display: none; }
+  .layers-panel { --preview-height: min(46vw, 260px); }
+  .layers { max-height: 285px; min-height: 160px; }
+  .layer { min-height: 42px; padding: 9px; }
+  .layer-footer { margin-bottom: 10px; }
+
+  .polygon-dialog { width: calc(100vw - 20px); max-width: none; }
+  .polygon-editor { height: min(58vh, 390px); margin: 10px; }
+  .polygon-modal-head { padding: 12px; }
+  .polygon-modal-actions { flex-wrap: wrap; padding: 0 10px 10px; gap: 6px; }
+  .polygon-modal-actions span { display: none; }
+  .polygon-modal-actions .primary-btn { flex: 1 1 100%; }
+  .share-dialog { width: calc(100vw - 28px); }
+}
+
+@media (max-width: 380px) {
+  .tool-content { grid-template-columns: 1fr; }
+  .tool-content .preset-tools, .tool-content .panel-guide { grid-column: auto; }
+  .canvas { flex-basis: 470px; min-height: 470px; }
+  .canvas-actions { flex-wrap: wrap; }
+  .canvas-actions > .ghost-btn { flex: 1 1 calc(50% - 4px); }
+  .export-menu { flex: 1 1 100%; }
+}

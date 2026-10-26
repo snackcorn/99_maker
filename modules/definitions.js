@@ -9,7 +9,7 @@ window.MakerDefinitions = { contentDefinitions: {
   },
   choice: {
     label: '체크 선택',
-    html: `<div class="editable field-title" contenteditable="true">Q. 선호 컨텐츠</div><div class="chip-list"><button class="choice-chip selected" type="button">스토리 <span class="chip-delete">×</span></button><button class="choice-chip" type="button">파밍/엔드컨텐츠 <span class="chip-delete">×</span></button><button class="choice-chip selected" type="button">스크린샷/룩덕 <span class="chip-delete">×</span></button><button class="choice-chip" type="button">OST/분위기 <span class="chip-delete">×</span></button><button class="chip-add" type="button">＋ 옵션 추가</button></div>`
+    html: `<div class="editable field-title" contenteditable="true">Q. 선호 컨텐츠</div><div class="chip-list"><button class="choice-chip selected" type="button">스토리 <span class="chip-delete">×</span></button><button class="choice-chip" type="button">파밍/엔드컨텐츠 <span class="chip-delete">×</span></button><button class="choice-chip selected" type="button">스크린샷/룩덕 <span class="chip-delete">×</span></button><button class="choice-chip" type="button">OST/분위기 <span class="chip-delete">×</span></button></div>`
   },
   check: {
     label: '체크리스트',
